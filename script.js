@@ -45,12 +45,11 @@ btn.addEventListener ("click", (evento) =>{
     titleTask.innerText = value;
     taskContent.appendChild(checkComplete());
     taskContent.appendChild(titleTask);
-
-    const content = `
-    <i class="fas fa-trash-alt trashIcon icon"></i>`;
+    taskContent.appendChild(deleteIcon());
     // task.innerHTML = content;
     task.appendChild(taskContent);
-    console.log(task);
+    //llamo al elemento padre para que el elemento eliminar se coloque en su lugar
+    task.appendChild(deleteIcon());
     //al elemento lista (padre) quiero agregar una tarea (hijo)
     //agrego toda la tarea anterior al elemento lista (padre:lista/hijo:tarea):
     list.appendChild(task);
@@ -75,6 +74,20 @@ btn.addEventListener ("click", (evento) =>{
     element.classList.toggle('fas');
     element.classList.toggle('completeIcon');
     element.classList.toggle('far');
+  };
+  
+  /*Reemplaza a const content = `
+  <i class="fas fa-trash-alt trashIcon icon"></i>`;*/
+  const deleteIcon =() => {
+    const i = document.createElement("i");
+    i.classList.add("fas", "fa-trash-alt", "trashIcon", "icon")
+    i.addEventListener ("click", deleteTask )
+    return i;
+  };
+
+  const deleteTask =(event) => {
+    const parent = event.target.parentElement;
+    parent.remove();
   };
 })();
 
