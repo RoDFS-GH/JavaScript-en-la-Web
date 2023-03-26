@@ -1,5 +1,7 @@
-/*
+import checkComplete from "./components/checkComplete.js";
+import deleteIcon from "./components/deleteIcon.js";
 
+/*
 //cuando el uasuario haga click necesitamos que alguien nos escuche (listener) y que ese realice una acción (función)
 //arrow functions o funciones anonimas
 //recibimos el evento que se está generando (evento)
@@ -11,7 +13,7 @@ btn.addEventListener ("click", (evento) =>{
    
 })*/
 
-(() => {
+
   //selecciono el data del botón del formulario
   const btn = document.querySelector('[data-form-btn]');
   //recibo un evento en createTask
@@ -45,7 +47,7 @@ btn.addEventListener ("click", (evento) =>{
     titleTask.innerText = value;
     taskContent.appendChild(checkComplete());
     taskContent.appendChild(titleTask);
-    taskContent.appendChild(deleteIcon());
+    
     // task.innerHTML = content;
     task.appendChild(taskContent);
     //llamo al elemento padre para que el elemento eliminar se coloque en su lugar
@@ -59,37 +61,11 @@ btn.addEventListener ("click", (evento) =>{
   //agrego con el click una tarea vacía por ahora
   btn.addEventListener('click', createTask);
   
-  //reemplaza las clases de html en el elemento i
-  const checkComplete = () => {
-    const i = document.createElement('i');
-    i.classList.add('far', 'fa-check-square', 'icon');
-    i.addEventListener('click', completeTask);
-    return i;
-  };
-  // Immediately invoked function expression IIFE
-  const completeTask = (event) => {
-    //accedo al elemento i con target  
-    const element = event.target;
-    //la función togle verifica si existe o no existe la clase
-    element.classList.toggle('fas');
-    element.classList.toggle('completeIcon');
-    element.classList.toggle('far');
-  };
   
-  /*Reemplaza a const content = `
-  <i class="fas fa-trash-alt trashIcon icon"></i>`;*/
-  const deleteIcon =() => {
-    const i = document.createElement("i");
-    i.classList.add("fas", "fa-trash-alt", "trashIcon", "icon")
-    i.addEventListener ("click", deleteTask )
-    return i;
-  };
+  
+   
+ 
 
-  const deleteTask =(event) => {
-    const parent = event.target.parentElement;
-    parent.remove();
-  };
-})();
 
 
 
